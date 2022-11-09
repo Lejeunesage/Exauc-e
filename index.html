@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- importation de VueJS dans le projet -->
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+    <title>VueJS</title>
+    <style>
+        input{
+            width: 200px;
+        }
+        .box
+        {
+            width: 200px;
+            aspect-ratio: 1;
+            border: 1px solid;
+            color: aliceblue;
+            font-size: 2rem;
+            background-color: aqua
+        }
+
+        .box2{background-color: red;}
+        .box3{background-color: green;}
+
+        table{
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+        td,tr,th{ border: 1px solid black;
+        padding: 1rem;}
+    </style>
+</head>
+
+<body>
+
+    <!-- Instance racine qui va comporter l'instance de vue.js -->
+    <div id="root">
+        <!-- si isVisible == true affiche div 1 -->
+        <div v-if = "isVisible" class="box">div1</div>
+        <!-- si non si isVisible == true affiche div2 -->
+        <div v-else-if = " isVisible2" class = "box box2">div2</div>
+       <!-- si non affiche div3 -->
+        <div v-else = " isVisible" class = "box box3">div3</div>
+
+
+        <ol>
+            <li  v-for="el of arr">{{el}}</li>
+        </ol>
+
+        <ol>
+            <li v-for = "v in obj">{{v}}</li>
+        </ol>
+        
+        <h1>Todo App</h1>
+        <form action="#">
+            <div><input type="text" name="firstName" placeholder="Votre prénom" v-model="user_firstname"></div>
+            <div><input type="text" name="lastName" placeholder="Votre nom" v-model="user_lastname"></div>
+            <div><input type="number" name="age" placeholder="Votre age" v-model="user_age"></div>
+            <div><input type="email" id="pass"  placeholder="Votre email" v-if ="arrobase" v-model="user_email"> </div>
+            <button type="submit">Envoyer</button>
+        </form>
+
+        <p>Prénom: {{user_firstname}}</p>
+        <p>Nom: {{user_lastname}}</p>
+        <p>Age: {{user_age}}</p>
+        <p>Email: {{user_email}}</p>
+
+        <p>{{test}}</p>
+        <p v-text="test"></p>
+        <p v-html="test"></p>
+
+
+       <table>
+            <thead>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Age</th>
+            </thead>
+            <tbody>
+                <tr v-for = " i of table">
+                    <td>{{i.fName}}</td>
+                    <td>{{i.lName}}</td>
+                    <td>{{i.age}}</td>
+                </tr>
+            </tbody>
+       </table>
+
+    </div>
+
+    <!-- Instance un objet vue qui nous permettra d'avoir toutes les fonctionnalités associés -->
+    <script>
+        const vue = new Vue({
+            // el: "#root", // el==> option utilisée pour lier la div avec l'id app
+            // template: `
+            // <div>
+            //     <h1>Todo App</h1>
+            //     <form action = "#" >
+            //     <input type="text" name="search" id="search" v-model="input">
+            //     <input type="submit" value="Envoyer">
+            //     </form>
+
+            // <p>Valeur de la variable input: {{ input }}</p>
+            // </div>
+
+            // `,
+            /* template ==> option utilisée pour définir le markup (html) de la page.
+                Le template ne doit avoir qu'un seul parent
+            */
+            data: {
+                user_firstname: '',
+                user_lastname: '',
+                user_age: null,
+                user_email: null,
+                test: "<h2>Coco rapé</h2>",
+                // fullName: user_firstname + " " + user_lastname,
+                isVisible: true,
+                isVisible: false,
+                arrobase: true,
+                arr : ["Lundi","Mardi", "Mercredi", "Jeudi", "Vendredi"],
+                obj : { firstName:"John", lastName:"Doe"},
+                table : [ 
+                    {fName:"John", lName : "Doe", age: "32", },
+                    {fName:"Kolade", lName : "Padonou", age: "10"},
+                    {fName:"Kolade", lName : "Adihou", age: "26"},
+                    {fName:"Tiburce", lName : "Kouagou", age: "90"},
+                    {fName:"Quebert", lName : "Bah", age: "55"},
+                    {fName:"Estelle", lName : "Deha", age: "36"},
+                    {fName:"Marcos", lName : "Medenou", age: "54"},
+                ]
+                   
+
+            },
+            /*
+            data ==> option permet de stocker toutes les données que nous voulons (mais très souvent des données utiles dans notre document HTML)
+            */
+        }).$mount("#root");  // Instancie un objet vue
+
+        
+
+        /**
+            DIRECTIVE VUE ==> c'est un mot clé que l'on écrit dans le html et qui permet de demander à vue d'effectuer des actions précise. La plupart des directives commencent par v- (v de vue).
+            
+
+            v-model: directive qui demande à vue de prendre la valeur dans un champ de saisie et de la stocker dans une variable
+
+            v-text: directive qui demande à vue d'interpoler le texte contenu dans la variable qu'on lui fourni littéralement (sans tenir compte des balises)
+            
+            v-html: directive qui demande à vue d'interpoler le texte contenu dans la variable qu'on lui fourni tout en considérant les tags
+
+            v-if: directive qui permet d'afficher le contenu si la condition fournis est vraie.
+        */
+    </script>
+
+
+</body>
+
+</html>

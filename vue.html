@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- importation de VueJS dans le projet -->
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+    <title>VueJS</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div id="root">
+        <h1>Registration</h1>
+        <form action="" method="POST">
+            <div>
+                <label for="email">Email</label> 
+            </div>
+            <div>
+                <input type="email" id="email" v-model = "user_email"> 
+            </div>
+            <div>
+                <label for="pass">Password</label> 
+            </div>
+            <div>
+                <input type="password" id="pass" v-model = "user_pwd"> 
+            </div>
+            <div>
+                <label for="phone">Phone</label> 
+            </div>
+            <div>
+                <input type="tel" id="phone" v-model = "user_phone"> 
+            </div>
+            <br>
+            <div>
+                <span class="email">Email: {{user_email}}</span> 
+            </div>
+           <div> 
+                <span class="password">Password: {{user_pwd}}</span> 
+            </div>
+           <div>
+                <span class="phone">Phone: {{user_phone}}</span> 
+           </div>
+            <button type="submit">Submit</button>
+        </form>
+
+    </div>
+
+    <script>
+        const vue = new Vue({
+           
+            data: {
+                user_email: '',
+                user_pwd: '',
+                user_phone: ''
+            }
+        }).$mount("#root");
+
+    </script>
+</body>

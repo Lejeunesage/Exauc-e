@@ -1,0 +1,56 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: cursive;
+    padding-block: 9rem;
+}
+h1{
+    text-align: center;
+
+}
+#root
+{
+    box-shadow: 0 0 20px black;
+    border-radius: 50px;
+    width: 300px;
+    padding: 2rem 1.5rem;
+}
+
+input{
+    width: 100%;
+    height: 2rem;
+    font-size: 16px;
+    outline:none;
+    border: none;
+    border-bottom: 1px solid teal;
+    font-family: cursive;
+   
+}
+div{
+    margin-block: 1rem ;
+}
+label{
+    font-size: 16px;
+}
+span{
+    font-size: 16px;
+}
+
+button{
+    padding: .5rem 1.5rem;
+    font-size: 15px;
+    background-color: brown;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    box-shadow: -2px -2px 2px black;
+}
+
+button:hover{
+    background-color: teal;
+    color: white;
+    border: none;
+}
+
+
