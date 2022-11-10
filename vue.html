@@ -60,4 +60,225 @@
         }).$mount("#root");
 
     </script>
+    
+    
+    
+    
+    
+    ***********************************************************
+    
+    
+    <!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- importation de VueJS dans le projet -->
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+    <title>VueJS</title>
+    
+</head>
+
+<body>
+    <div id="root">
+        <header :style = "flex">
+            <div :style = "flex1">
+                <a :href="home" ><img :src="logo" :alt="description" :style="size"></a>
+                <h1 style="font-size: 25px" class="twostar">FRESHLY RESTAURANT</h1>
+            </div>
+            <nav>
+                <ul :style ="list">
+                    <li v-for = "(v , i) of links" :key = "i"><a :href = "v.href" style = " text-decoration: none; color: brown ; font-size: 20px ;">{{v.title}}</a></li>
+                    
+                </ul>
+            </nav>
+        </header>
+    </div>
+
+    <script>
+        const vue = new Vue({
+           
+            data: {
+            
+                links: [
+                    {title: "Homes", href: "./index.html"},
+                    {title: "About", href: "./about.html"},
+                    {title: "Menu", href: "./menu.html"},
+                    {title: "Contact", href: "./contact.html"},
+                ],
+                home: 'index.html',
+                logo:"./logo.png",
+                description:'logo',
+                size:"width: 150px;",
+                flex : "display: flex; align-items: center; justify-content: space-between ; padding : 1rem ",
+                flex1 : "display: flex; align-items: center; justify-content: center ",
+                list : "display: flex; align-items: center; justify-content: space-around; gap : 2rem; list-style: none; text-decoration: none" 
+             
+            }
+        }).$mount("#root");
+
+    </script>
+</body>
+
+
+***************************************************************
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- importation de VueJS dans le projet -->
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script> -->
+    <title>VueJS</title>
+    <style>
+        .titleClass{
+            color:red;
+        }
+    </style>
+    <script src="./vue.global.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1 v-bind:class="red" >{{message}}</h1>
+        <button v-on:click = "tapemoi ">Incrément</button>
+        <p id = "text" >L'incrémentation {{x}}</p>
+        <br><br>
+        <br><br>       
+        <button v-on:click = "toogle ">Toogle</button>
+        <h1 v-if = "awesome">Vue c'est génial !</h1>
+        <h1 v-else>Oh non !</h1>
+        <br><br>
+        <br><br>
+        <form action="#" @submit.prevent = "addTodo">
+            <input type="text" v-model = "newTodo">
+            <button type="submit">ADD</button>
+        </form>
+        <li v-for = " todo in todos " :key="todo.id">{{todo.text}}</li>
+        <button class="bouton" @click="removeTodo(todo)">X</button>
+
+    </div>
+
+    <script>
+        const vue = Vue.createApp({
+           
+            data(){
+                return{
+                    message: "Quelque chose se passe dans ma tête !",
+                    red: "titleClass",
+                    x: 0,
+                    awesome : true,
+                    newTodo: '',
+                    todos : [
+                        {id: id++, text: 'Learn HTML'},
+                        {id: id++, text: 'Learn JavaScript'},
+                        {id: id++, text: 'Learn  Vue'},
+                    ]
+                }
+            },
+            methods:{
+
+                tapemoi(){
+                    this.x = this.x + 1;
+                },
+
+                toogle(){
+                    if (this.awesome) {
+                        this.awesome = false;
+                    } else {
+                        this.awesome = true;
+                    }
+                },
+
+                addTodo(){
+                    let button = document.querySelector('.bouton');
+                    let input = document.querySelector('')
+                    this.todos.id = id;
+                    this.todos.text = this.newTodo;
+                    
+                    this.newTodo = ''
+                },
+
+                removeTodo(todo){
+
+                }
+            }
+        });
+        vue.mount("#root");
+
+    </script>
+</body>
+
+
+***************************************************************
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- importation de VueJS dans le projet -->
+    <title>Todo.HTML</title>
+    <script src="./vue.global.js"></script>
+    
+</head>
+<body>
+    <div id="root">
+        <form action="#" @submit.prevent = "addTodo">
+            <input type="text" v-model = "newTodo">
+            <button type="submit">ADD</button>
+        </form>
+        <li v-for = " todo in todos " :key="todo.id">{{todo.text}} 
+            <button @click="removeTodo(todo)">X</button></li>
+        
+    </div>
+    <script>
+        let id = 0;
+        const vue = Vue.createApp({
+           
+            data(){
+                return{
+                    newTodo: '',
+                    todos : [
+                        {id: id++, text: 'Learn HTML'},
+                        {id: id++, text: 'Learn JavaScript'},
+                        {id: id++, text: 'Learn  Vue'},
+                    ]
+                }
+            },
+            methods:{
+                addTodo(){
+                  
+                    this.todos.push( {id: id++, text: this.newTodo});
+                    this.newTodo = '';
+                },
+
+                removeTodo(todo){
+                    this.todos = this.todos.filter((Todo) => Todo !== todo);
+                }
+            }
+        });
+        vue.mount("#root");
+
+    </script>
+</body>
+
+
+
+
+
+
+
+
+
+    
+    
+    
 </body>
